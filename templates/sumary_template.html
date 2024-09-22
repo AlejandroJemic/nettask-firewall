@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+ <html lang="es">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Network Connections Summary</title>
+   <link rel="stylesheet" href="/static/style.css">
+   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+ 
+<style>
+
+</style>
+</head>
+    <body" onload="setTimeout(function(){ location.reload(); }, 2 * 60000);">
+    <h1 class="title">SUMMARY</h1>
+    <div id="context-menu">
+        <a href="" onClick="updateWatchDog('block'); event.preventDefault();" >BLOCK</a>
+        <a href="" onClick="updateWatchDog('unblock'); event.preventDefault();">UN-BLOCK</|a>
+    </div>
+    <div class="process-container">
+        {% for process, pids in data.items() %}
+        <div class="process">
+            <h2><a href="/task/?process={{ process }}" class="context-menu-trigger" data-p="{{ process }}">{{ process }}</a></h2>
+            {% for pid, connections in pids.items() %}
+            <div class="pid">
+                <h3>PID: {{ pid }}</h3>
+                <div class="ip-list">
+                    <ul>
+                        <li><strong>From:</strong></li>
+                        <div class="card-container">
+                            {% for from_ip in connections['From'] %}
+                            <div class="card" data-ip="{{from_ip}}">
+                                <a href="https://dnschecker.org/ip-blacklist-checker.php?query={{from_ip}}">{{from_ip}}</a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <li><strong>To:</strong></li>
+                        <div class="card-container">
+                            {% for to_ip in connections['To'] %}
+                            <div class="card" data-ip="{{to_ip}}">
+                                <a href="https://dnschecker.org/ip-blacklist-checker.php?query={{to_ip}}">{{to_ip}}</a>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+
+
+
+   <script src="/static/script.js"></script>
+</body>
+</html>

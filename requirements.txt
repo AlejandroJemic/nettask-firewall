@@ -1,0 +1,7 @@
+Pillow
+requests
+pandas
+flask
+logging
+werkzeug
+pystray

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+ <html lang="es">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>{{process_name}}</title>
+   <link rel="stylesheet" href="/static/style.css">
+   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+ </head>
+ <body" onload="setTimeout(function(){ location.reload(); }, 2 * 60000);">
+   <h1 class="title">DETAILS OF {{process_name}} count: {{data|length}}</h1>
+   <div  id="searchContainer">
+     <input type="text"   id="searchBox" placeholder="Buscar...">
+     <button id="searchButton" >Buscar</button>
+   </div>
+        <table border="1" class="dataframe">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Task</th>
+                <th>PID</th>
+                <th>From IP</th>
+                <th>From Port</th>
+                <th>To IP</th>
+                <th>To Port</th>
+                <th style="width: 40%;">CMD</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    <td>{{ item['Time'] }}</td>
+                    <td>{{ item['Task'] }}</td>
+                    <td>{{ item['PID'] }}</td>
+                    <td>{{ item['From_IP'] }}</td>
+                    <td>{{ item['From_Port'] }}</td>
+                    <td>{{ item['To_IP'] }}</td>
+                    <td>{{ item['To_Port'] }}</td>
+                    <td>{{ item['CMD'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script src="/static/script.js"></script>
+</body>
+</html>
