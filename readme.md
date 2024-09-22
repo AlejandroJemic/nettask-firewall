@@ -41,7 +41,7 @@ This project uses the following technologies:
 
 - **Language**: Python 3.x
 - **Web Framework**: Flask
-- **Frontend**: HTML/CSS, Google Fonts
+- **Frontend**: HTML/JS/CSS, Google Fonts
 - **Network connections**: Socket
 - **Parallel processing**: Threading
 - **Operating system interaction**: ctypes, Pywin32
